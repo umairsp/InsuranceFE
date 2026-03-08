@@ -9,7 +9,7 @@ export const AuthProvider = ({ children }) => {
 
     // Default axios config
     const isProduction = window.location.hostname !== 'localhost';
-    axios.defaults.baseURL = isProduction ? '/api' : 'http://localhost:5000/api';
+    axios.defaults.baseURL = isProduction ? 'https://insurancereminderappbackend.vercel.app/api' : 'http://localhost:5000/api';
 
     useEffect(() => {
         const userInfo = localStorage.getItem('userInfo');
