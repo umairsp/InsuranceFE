@@ -24,6 +24,9 @@ const PolicyForm = ({ isViewMode = false }) => {
         agentProfit: '',
         vehicleType: 'Car',
         notes: '',
+        agentName: '',
+        agentContactNumber: '',
+        policyType: 'Package Policy',
     });
 
     const [loading, setLoading] = useState(Boolean(id)); // Always load if ID exists
@@ -118,7 +121,24 @@ const PolicyForm = ({ isViewMode = false }) => {
                             </div>
                             <div>
                                 <label className="block text-sm font-medium text-gray-700">Insurance Company *</label>
-                                <input type="text" name="insuranceCompany" required value={formData.insuranceCompany} onChange={handleChange} className="input-field" placeholder="ABC Insurance Ltd" />
+                                <select name="insuranceCompany" required value={formData.insuranceCompany} onChange={handleChange} className="input-field">
+                                    <option value="">Select Insurance Company</option>
+                                    <option value="Bajaj Allianz">Bajaj Allianz</option>
+                                    <option value="Cholamandalam MS">Cholamandalam MS</option>
+                                    <option value="Digit General Insurance">Digit General Insurance</option>
+                                    <option value="Generali Central">Generali Central</option>
+                                    <option value="HDFC ERGO">HDFC ERGO</option>
+                                    <option value="ICICI Lombard">ICICI Lombard</option>
+                                    <option value="IFFCO Tokio">IFFCO Tokio</option>
+                                    <option value="IndusInd">IndusInd</option>
+                                    <option value="Magma HDI">Magma HDI</option>
+                                    <option value="Royal Sundaram Alliance">Royal Sundaram Alliance</option>
+                                    <option value="New India Insurance">New India Insurance</option>
+                                    <option value="United Insurance">United Insurance</option>
+                                    <option value="National Insurance">National Insurance</option>
+                                    <option value="Oriental Insurance">Oriental Insurance</option>
+                                    <option value="Other">Other</option>
+                                </select>
                             </div>
                             <div className="grid grid-cols-2 gap-4">
                                 <div>
@@ -138,6 +158,13 @@ const PolicyForm = ({ isViewMode = false }) => {
                                     />
                                 </div>
                             </div>
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700">Policy Type *</label>
+                                <select name="policyType" required value={formData.policyType} onChange={handleChange} className="input-field">
+                                    <option value="Package Policy">Package Policy</option>
+                                    <option value="Third Party">Third Party</option>
+                                </select>
+                            </div>
                             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 border p-4 rounded-lg bg-gray-50">
                                 <div>
                                     <label className="block text-sm font-medium text-gray-700">Total Premium (₹) *</label>
@@ -153,8 +180,8 @@ const PolicyForm = ({ isViewMode = false }) => {
                                         <span className={`text-xl sm:text-2xl font-bold ${formData.agentProfit >= 0 ? 'text-green-600' : 'text-red-600'}`}>
                                             ₹{formData.agentProfit || 0}
                                         </span>
-                                        <span className="text-gray-400 text-[10px] sm:text-xs" title={`45% Commission: ₹${formData.commissionAmount || 0}`}>
-                                            (45% com: ₹{formData.commissionAmount || 0})
+                                        <span className="text-gray-400 text-[10px] sm:text-xs" title={`Commission: ₹${formData.commissionAmount || 0}`}>
+                                            (Com: ₹{formData.commissionAmount || 0})
                                         </span>
                                     </div>
                                 </div>
@@ -173,8 +200,11 @@ const PolicyForm = ({ isViewMode = false }) => {
                                     <label className="block text-sm font-medium text-gray-700">Vehicle Type *</label>
                                     <select name="vehicleType" required value={formData.vehicleType} onChange={handleChange} className="input-field">
                                         <option value="Car">Car</option>
-                                        <option value="Bike">Bike</option>
-                                        <option value="Commercial">Commercial/Truck</option>
+                                        <option value="Two Wheelers">Two Wheelers</option>
+                                        <option value="Autos">Autos</option>
+                                        <option value="Taxis">Taxis</option>
+                                        <option value="Goods Carrying Vehicles">Goods Carrying Vehicles</option>
+                                        <option value="Buses & Coaches">Buses & Coaches</option>
                                         <option value="Other">Other</option>
                                     </select>
                                 </div>
@@ -199,6 +229,25 @@ const PolicyForm = ({ isViewMode = false }) => {
                             </div>
                         </div>
 
+                    </div>
+
+                    {/* Section 4: Agent Details */}
+                    <div className="pt-4 space-y-4">
+                        <h3 className="text-lg font-medium text-gray-900 border-b pb-2">Agent Details</h3>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700">Agent Name</label>
+                                <input type="text" name="agentName" value={formData.agentName} onChange={handleChange} className="input-field" placeholder="Agent Name" />
+                            </div>
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700">Agent Contact Number</label>
+                                <input type="text" name="agentContactNumber" value={formData.agentContactNumber} onChange={handleChange} className="input-field" placeholder="Contact Number" />
+                            </div>
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700">Agent Commission (₹) *</label>
+                                <input type="number" name="commissionAmount" required value={formData.commissionAmount} onChange={handleChange} className="input-field" placeholder="Commission" />
+                            </div>
+                        </div>
                     </div>
 
                     {/* Section 3: Additional Notes */}
