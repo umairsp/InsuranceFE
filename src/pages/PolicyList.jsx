@@ -40,9 +40,9 @@ const PolicyList = () => {
     const filteredPolicies = policies.filter((policy) => {
         // First apply the search term filter
         const matchesSearch =
-            policy.vehicleNumber?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            policy.owner1?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            policy.policyNumber?.toLowerCase().includes(searchTerm.toLowerCase());
+            (policy.vehicleNumber?.toLowerCase() || '').includes(searchTerm.toLowerCase()) ||
+            (policy.owner1?.toLowerCase() || '').includes(searchTerm.toLowerCase()) ||
+            (policy.policyNumber?.toLowerCase() || '').includes(searchTerm.toLowerCase());
 
         if (!matchesSearch) return false;
 
